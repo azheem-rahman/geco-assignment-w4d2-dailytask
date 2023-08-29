@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 const ReactHooks = () => {
+  // Array of Objects
   const [employees, setEmployees] = useState([
     {
       id: 1,
@@ -55,6 +56,7 @@ const ReactHooks = () => {
     },
   ]);
 
+  // Object
   const [car, setCar] = useState({
     color: "purple",
     type: "minivan",
@@ -62,6 +64,19 @@ const ReactHooks = () => {
     capacity: 7,
   });
 
+  // String
+  const [name, setName] = useState("Alina");
+
+  // Number
+  const [height, setHeight] = useState(165);
+
+  // Boolean
+  const [isMarried, setIsMarried] = useState(true);
+
+  // Array
+  const [numBottlesInBox, setNumBottlesInBox] = useState([5, 8, 0, 2, 4, 3]);
+
+  // To update Array of Object
   const updateSecondIndex = () => {
     const newEmployee = {
       id: 11,
@@ -80,12 +95,30 @@ const ReactHooks = () => {
     setEmployees(newEmployeesList);
   };
 
+  // To update Object
   const updateTwoPropertyValues = () => {
     setCar({
       ...car,
       color: "red",
       type: "sedan",
     });
+  };
+
+  // To update String
+  const updateString = () => {
+    setName("David");
+  };
+  // To update Number
+  const updateNum = () => {
+    setHeight(175);
+  };
+  // To update Boolean
+  const updateBoolean = () => {
+    setIsMarried((prevState) => !prevState);
+  };
+  // To update Array
+  const updateArr = () => {
+    setNumBottlesInBox([...numBottlesInBox, 99, 999, 9999]);
   };
 
   return (
@@ -104,6 +137,7 @@ const ReactHooks = () => {
         })}
         <button onClick={updateSecondIndex}>Update 2nd Index</button>
       </div>
+
       <h2>Create an object, update its 2 property values</h2>
       <div style={{ backgroundColor: "lightgrey" }}>
         <div style={{ border: "dotted 1px black" }}>
@@ -113,6 +147,26 @@ const ReactHooks = () => {
           <button onClick={updateTwoPropertyValues}>
             Update 2 property values
           </button>
+        </div>
+      </div>
+
+      <h2>Practice all datatypes for state variables</h2>
+      <div style={{ backgroundColor: "lightgrey" }}>
+        <div style={{ border: "dotted 1px black" }}>
+          <p>String: {name}</p>
+          <button onClick={updateString}>Update Name</button>
+        </div>
+        <div style={{ border: "dotted 1px black" }}>
+          <p>Number: {height}</p>
+          <button onClick={updateNum}>Update Height</button>
+        </div>
+        <div style={{ border: "dotted 1px black" }}>
+          <p>Boolean: {JSON.stringify(isMarried)}</p>
+          <button onClick={updateBoolean}>Update Boolean</button>
+        </div>
+        <div style={{ border: "dotted 1px black" }}>
+          <p>Array: {JSON.stringify(numBottlesInBox)}</p>
+          <button onClick={updateArr}>Update Array</button>
         </div>
       </div>
     </div>
