@@ -53,57 +53,14 @@ const ReactHooks = () => {
       img: "https://loremflickr.com/640/480/people?lock=5618653785489408",
       dept: "Forward Creative",
     },
-    {
-      id: 6,
-      fullName: "Francis Torp",
-      age: 25,
-      dob: "1998-07-26T06:27:01.165Z",
-      salary: 231635,
-      designation: "Engineer",
-      img: "https://loremflickr.com/640/480/people?lock=3707509636333568",
-      dept: "Product Mobility",
-    },
-    {
-      id: 7,
-      fullName: "Terrance Hoppe",
-      age: 40,
-      dob: "1983-05-28T09:08:48.037Z",
-      salary: 146680,
-      designation: "Officer",
-      img: "https://loremflickr.com/640/480/people?lock=1664342953033728",
-      dept: "Direct Program Administration",
-    },
-    {
-      id: 8,
-      fullName: "Marilyn Leannon",
-      age: 59,
-      dob: "1964-12-28T22:15:14.236Z",
-      salary: 60706,
-      designation: "Coordinator",
-      img: "https://loremflickr.com/640/480/people?lock=3399000008949760",
-      dept: "Internal Tactics",
-    },
-    {
-      id: 9,
-      fullName: "Francis Shields",
-      age: 76,
-      dob: "1947-05-06T02:28:16.520Z",
-      salary: 265362,
-      designation: "Senior Architect",
-      img: "https://loremflickr.com/640/480/people?lock=6645985090469888",
-      dept: "Global Intranet",
-    },
-    {
-      id: 10,
-      fullName: "Mr. Calvin Rosenbaum",
-      age: 53,
-      dob: "1970-10-04T17:30:05.153Z",
-      salary: 127237,
-      designation: "Liaison",
-      img: "https://loremflickr.com/640/480/people?lock=8209629053976576",
-      dept: "Central Infrastructure",
-    },
   ]);
+
+  const [car, setCar] = useState({
+    color: "purple",
+    type: "minivan",
+    registration: new Date("2012-02-03"),
+    capacity: 7,
+  });
 
   const updateSecondIndex = () => {
     const newEmployee = {
@@ -123,19 +80,41 @@ const ReactHooks = () => {
     setEmployees(newEmployeesList);
   };
 
+  const updateTwoPropertyValues = () => {
+    setCar({
+      ...car,
+      color: "red",
+      type: "sedan",
+    });
+  };
+
   return (
     <div>
-      {employees.map((employee, index) => {
-        return (
-          <div key={index} style={{ border: "solid 1px black" }}>
-            <p>{employee.fullName}</p>
-            <p>{employee.age}</p>
-            <p>{employee.designation}</p>
-            <p>{employee.dept}</p>
-          </div>
-        );
-      })}
-      <button onClick={updateSecondIndex}>Update 2nd Index</button>
+      <h2>Create an Array of Objects and update its second index</h2>
+      <div style={{ backgroundColor: "lightgrey" }}>
+        {employees.map((employee, index) => {
+          return (
+            <div key={index} style={{ border: "dotted 1px black" }}>
+              <p>{employee.fullName}</p>
+              <p>{employee.age}</p>
+              <p>{employee.designation}</p>
+              <p>{employee.dept}</p>
+            </div>
+          );
+        })}
+        <button onClick={updateSecondIndex}>Update 2nd Index</button>
+      </div>
+      <h2>Create an object, update its 2 property values</h2>
+      <div style={{ backgroundColor: "lightgrey" }}>
+        <div style={{ border: "dotted 1px black" }}>
+          <p>Car Colour: {car.color}</p>
+          <p>Car Type: {car.type}</p>
+          <p>Car Capacity: {car.capacity}</p>
+          <button onClick={updateTwoPropertyValues}>
+            Update 2 property values
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
